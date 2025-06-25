@@ -1,0 +1,25 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "The Focus AI Registry",
+  "homepage": "https://thefocus.ai",
+  "items": [
+    {
+      "name": "cli-component",
+      "type": "registry:block",
+      "title": "CLI Component",
+      "description": "Setup of mise and vscode.",
+      "files": [
+        {
+          "path": "components/cli/mise.toml",
+          "type": "registry:file",
+          "target": "mise.toml"
+        },
+        {
+          "path": "components/cli/.vscode/tasks.json",
+          "type": "registry:file",
+          "target": ".vscode/tasks.json"
+        }
+      ]
+    }
+  ]
+}

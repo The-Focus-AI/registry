@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "cli-component",
+  "type": "registry:block",
+  "title": "CLI Component",
+  "description": "Setup of mise and vscode.",
+  "files": [
+    {
+      "path": "components/cli/mise.toml",
+      "content": "[tools]\nnode = \"20\"\npnpm = \"latest\"\n\"npm:repomix\" = \"latest\"\n\"npm:vercel\" = \"latest\"\n\n[hooks]\n\n[env]\n_.path = ['./node_modules/.bin']\n\n[tasks.pnpm-install]\ndescription = 'Installs dependencies with pnpm'\nrun = 'pnpm install'\nsources = ['package.json', 'pnpm-lock.yaml', 'mise.toml']\noutputs = ['node_modules/.pnpm/lock.yaml']\n\n[tasks.dev]\ndescription = 'Calls your dev script in `package.json`'\nrun = 'npm run dev'\ndepends = ['pnpm-install']\n\n[tasks.clean]\ndescription = 'Clears out dist'\nrun = 'rm -rf dist/'\n\n[tasks.build]\ndescription = 'Clears out dist'\nrun = ['npm run build', 'du -sh dist']\ndepends = ['pnpm-install','clean']\n\n[tasks.llm-dump]\ndescription = 'Runs repomix'\nrun = ['repomix --ignore \"output*,**/*.log,tmp/,inputs/**/*md,data_integrity/**/*.json\"']\n\n[tasks.notification-deploy]\ndescription = 'Deploy the Vercel deployment notification webhook to Supabase'\nrun = [\n  'cd supabase/functions && supabase functions deploy deployment-notification --no-verify-jwt',\n  'echo \"✅ Deployment notification webhook deployed successfully!\"'\n]\n",
+      "type": "registry:file",
+      "target": "mise.toml"
+    },
+    {
+      "path": "components/cli/.vscode/tasks.json",
+      "content": "{\n  \"version\": \"2.0.0\",\n  \"tasks\": [\n    {\n      \"label\": \"dev\",\n      \"type\": \"shell\",\n      \"command\": \"mise dev\", // or your specific dev command\n      \"isBackground\": true,\n      \"problemMatcher\": [],\n      \"presentation\": {\n        \"reveal\": \"always\",\n        \"panel\": \"new\"\n      },\n      \"runOptions\": {\n        \"runOn\": \"folderOpen\"\n      }\n    }\n  ]\n}\n",
+      "type": "registry:file",
+      "target": ".vscode/tasks.json"
+    }
+  ]
+}
