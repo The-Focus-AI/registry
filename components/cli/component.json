@@ -1,18 +1,27 @@
 {
-    "name": "cli-component",
-    "type": "registry:block",
-    "title": "CLI Component",
-    "description": "Setup of mise and vscode.",
-    "files": [
-        {
-            "path": "components/cli/mise.toml",
-            "type": "registry:file",
-            "target": "mise.toml"
-        },
-        {
-            "path": "components/cli/.vscode/tasks.json",
-            "type": "registry:file",
-            "target": ".vscode/tasks.json"
-        }
-    ]
+  "name": "cli-component",
+  "type": "registry:block",
+  "title": "CLI Component",
+  "description": "Setup of mise and vscode.",
+  "files": [
+    {
+      "path": "components/cli/.vscode/tasks.json",
+      "type": "registry:file",
+      "target": ".vscode/tasks.json"
+    },
+    {
+      "path": "components/cli/mise.toml",
+      "type": "registry:file",
+      "target": "mise.toml"
+    }
+  ],
+  "_metadata": {
+    "originalPaths": [
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.JZ3g0xiwvh/transcribe/mise.toml",
+        "relative": "mise.toml"
+      }
+    ],
+    "created": "2025-06-26T03:37:25.416Z"
   }
+}

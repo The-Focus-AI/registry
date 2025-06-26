@@ -114,6 +114,26 @@
       "path": "components/stripe-integration/supabase/migrations/20240626120000_consolidated_schema.sql",
       "type": "registry:file",
       "target": "supabase/migrations/20240626120000_consolidated_schema.sql"
+    },
+    {
+      "path": "components/stripe-integration/components/navbar.tsx",
+      "type": "registry:component",
+      "target": "components/navbar.tsx"
+    },
+    {
+      "path": "components/stripe-integration/components/navbar-logged-in.tsx",
+      "type": "registry:component",
+      "target": "components/navbar-logged-in.tsx"
+    },
+    {
+      "path": "components/stripe-integration/mise/tasks/db-seed",
+      "type": "registry:file",
+      "target": "mise/tasks/db-seed"
+    },
+    {
+      "path": "components/stripe-integration/mise/tasks/sync-products",
+      "type": "registry:file",
+      "target": "mise/tasks/sync-products"
     }
   ],
   "_metadata": {
@@ -193,6 +213,22 @@
       {
         "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/supabase/migrations/20240626120000_consolidated_schema.sql",
         "relative": "supabase/migrations/20240626120000_consolidated_schema.sql"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.JZ3g0xiwvh/transcribe/components/navbar.tsx",
+        "relative": "components/navbar.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.JZ3g0xiwvh/transcribe/components/navbar-logged-in.tsx",
+        "relative": "components/navbar-logged-in.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.JZ3g0xiwvh/transcribe/mise/tasks/db-seed",
+        "relative": "mise/tasks/db-seed"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.JZ3g0xiwvh/transcribe/mise/tasks/sync-products",
+        "relative": "mise/tasks/sync-products"
       }
     ],
     "created": "2025-06-26T00:45:38.994Z"

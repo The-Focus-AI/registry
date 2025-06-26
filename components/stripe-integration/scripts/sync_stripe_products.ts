@@ -1,5 +1,3 @@
-// Usage: dotenvx run -- tsx scripts/sync_stripe_products.ts
-// Uses NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY from .env
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 

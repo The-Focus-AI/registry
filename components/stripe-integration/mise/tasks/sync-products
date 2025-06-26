@@ -1,0 +1,4 @@
+#!/bin/bash
+#MISE description="Syncs products from stripe"
+
+dotenvx run -- tsx scripts/sync_stripe_products.ts

@@ -1,0 +1,4 @@
+#!/bin/bash
+#MISE description="Resets the local database"
+
+supabase db reset --local --no-seed

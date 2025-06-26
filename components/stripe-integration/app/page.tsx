@@ -1,6 +1,7 @@
 import { createServerClient } from '@supabase/ssr'
 import Link from 'next/link'
 import { PricingTable, Plan } from '@/components/pricing-table'
+import Navbar from '@/components/navbar'
 
 async function getPlans(): Promise<Plan[]> {
   const supabase = createServerClient(
@@ -19,13 +20,7 @@ export default async function LandingPage() {
 
   return (
     <>
-      <header className="w-full flex justify-between items-center px-8 py-4 border-b mb-8">
-        <span className="font-bold text-xl">SaaS Starter</span>
-        <nav className="flex gap-6">
-          <Link href="/auth/login" className="text-blue-600 hover:underline">Login</Link>
-          <Link href="/pricing" className="text-blue-600 hover:underline">Pricing</Link>
-        </nav>
-      </header>
+      <Navbar />
       <main className="flex flex-col items-center gap-8 p-8">
         <h1 className="text-3xl font-bold">Welcome to Our SaaS!</h1>
         <p className="mb-4">Sign up or view our pricing to get started.</p>

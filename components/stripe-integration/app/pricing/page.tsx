@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { PricingTable, Plan } from '@/components/pricing-table'
+import Navbar from '@/components/navbar'
 
 async function getPlans(): Promise<Plan[]> {
   const supabase = createServerClient(
@@ -14,9 +15,12 @@ async function getPlans(): Promise<Plan[]> {
 export default async function PricingPage() {
   const plans = await getPlans()
   return (
-    <main className="flex flex-col items-center gap-8 p-8">
-      <h1 className="text-3xl font-bold mb-4">Pricing</h1>
-      <PricingTable plans={plans} />
-    </main>
+    <>
+      <Navbar />
+      <main className="flex flex-col items-center gap-8 p-8">
+        <h1 className="text-3xl font-bold mb-4">Pricing</h1>
+        <PricingTable plans={plans} />
+      </main>
+    </>
   )
 } 

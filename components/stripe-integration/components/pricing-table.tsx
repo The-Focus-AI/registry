@@ -1,4 +1,13 @@
 import React from 'react'
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 export type Plan = {
   id: string
@@ -21,36 +30,39 @@ export function PricingTable({ plans, showBuyButton = true }: PricingTableProps)
   return (
     <div className="flex flex-wrap gap-8 justify-center">
       {plans.map((plan) => (
-        <div
-          key={plan.id}
-          className="bg-white border rounded-lg shadow-md p-6 flex flex-col items-center w-80 hover:shadow-lg transition-shadow"
-        >
-          <h3 className="text-xl font-bold mb-2 capitalize">{plan.name}</h3>
-          <div className="text-3xl font-extrabold mb-2">${plan.price_cents / 100}<span className="text-base font-normal">/mo</span></div>
-          <ul className="mb-4 w-full text-left">
-            {allFeatures.map((feature) => (
-              <li key={feature} className="flex items-center gap-2">
-                {plan.features?.[feature] ? (
-                  <span className="text-green-600">✓</span>
-                ) : (
-                  <span className="text-gray-300">✗</span>
-                )}
-                <span className="capitalize">{feature.replace(/([A-Z])/g, ' $1')}</span>
-              </li>
-            ))}
-          </ul>
+        <Card key={plan.id} className="w-80 flex flex-col items-center">
+          <CardHeader className="items-center">
+            <CardTitle className="text-2xl capitalize">{plan.name}</CardTitle>
+            <CardDescription>
+              <span className="text-3xl font-extrabold">${plan.price_cents / 100}</span>
+              <span className="text-base font-normal">/mo</span>
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="w-full px-0">
+            <ul className="mb-4 w-full text-left px-6">
+              {allFeatures.map((feature) => (
+                <li key={feature} className="flex items-center gap-2">
+                  {plan.features?.[feature] ? (
+                    <span className="text-green-600">✓</span>
+                  ) : (
+                    <span className="text-gray-300">✗</span>
+                  )}
+                  <span className="capitalize">{feature.replace(/([A-Z])/g, ' $1')}</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
           {showBuyButton && (
-            <form action="/api/stripe/checkout" method="POST" className="w-full flex justify-center">
-              <input type="hidden" name="plan_id" value={plan.id} />
-              <button
-                type="submit"
-                className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors font-semibold"
-              >
-                Buy
-              </button>
-            </form>
+            <CardFooter className="w-full flex justify-center">
+              <form action="/api/stripe/checkout" method="POST" className="w-full flex justify-center">
+                <input type="hidden" name="plan_id" value={plan.id} />
+                <Button type="submit" className="w-full font-semibold">
+                  Buy
+                </Button>
+              </form>
+            </CardFooter>
           )}
-        </div>
+        </Card>
       ))}
     </div>
   )
