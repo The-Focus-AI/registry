@@ -35,6 +35,11 @@ run
 npx shadcn@latest add https://registry.thefocus.ai/r/stripe-integration.json
 ```
 
+When it asks you to overwrite page, say yes.
+
+When it asks you to overwrite middleware.ts, say no.
+
+
 ## Dependencies
 
 The component will automatically install:
@@ -58,6 +63,10 @@ npx shadcn@latest add https://registry.thefocus.ai/r/cli-component.json
 
 ```bash
 supabase init
+```
+
+```bash
+supabase start
 ```
 
 ### 2. Environment Variables
@@ -101,6 +110,12 @@ In your Supabase dashboard:
 ## Usage
 
 ### 1. Run Database Migrations
+
+Start up supabase
+
+```bash
+supabase start
+```
 
 ```bash
 supabase db reset --local --no-seed
