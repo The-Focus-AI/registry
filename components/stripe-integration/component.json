@@ -16,6 +16,11 @@
   ],
   "files": [
     {
+      "path": "components/stripe-integration/README.md",
+      "type": "registry:file",
+      "target": "docs/STRIPE-README.md"
+    },
+    {
       "path": "components/stripe-integration/app/page.tsx",
       "type": "registry:file",
       "target": "app/page.tsx"
