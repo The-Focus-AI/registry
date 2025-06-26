@@ -58,16 +58,82 @@ function escapeHtml(str: string) {
   });
 }
 
+// Function to convert simple markdown to HTML
+function markdownToHtml(markdown: string): string {
+  return markdown
+    // Headers
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    // Bold and italic
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    // Code blocks
+    .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+    // Inline code
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    // Links
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
+    // Line breaks
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+}
+
+// Function to get README content for a component
+function getComponentReadme(item: any): string | null {
+  // First try to find the README based on the file paths in the component
+  const firstFilePath = item.files?.[0]?.path;
+  if (firstFilePath) {
+    // Extract the component directory from the file path
+    // e.g., "components/cli/mise.toml" -> "cli"
+    const pathParts = firstFilePath.split('/');
+    if (pathParts.length >= 2 && pathParts[0] === 'components') {
+      const componentDir = pathParts[1];
+      const readmePath = path.join(componentsDir, componentDir, 'README.md');
+      if (fs.existsSync(readmePath)) {
+        return fs.readFileSync(readmePath, 'utf-8');
+      }
+    }
+  }
+  
+  // Fallback to using the component name directly
+  const readmePath = path.join(componentsDir, item.name, 'README.md');
+  if (fs.existsSync(readmePath)) {
+    return fs.readFileSync(readmePath, 'utf-8');
+  }
+  
+  return null;
+}
+
 const componentHtml = items.map((item: any) => {
   const name = escapeHtml(item.title || item.name || '');
   const description = escapeHtml(item.description || '');
   const installUrl = `https://registry.thefocus.ai/r/${encodeURIComponent(item.name)}.json`;
   const installCmd = `npx shadcn@latest add ${installUrl}`;
+  
+  // Check for README.md in the component directory
+  const readmeContent = getComponentReadme(item);
+  let readmeHtml = '';
+  
+  if (readmeContent) {
+    const processedMarkdown = markdownToHtml(escapeHtml(readmeContent));
+    readmeHtml = `
+      <div class="component-readme">
+        <div class="readme-toggle" onclick="toggleReadme('${item.name}')">
+          📖 View Documentation
+        </div>
+        <div class="readme-content" id="readme-${item.name}" style="display: none;">
+          <div>${processedMarkdown}</div>
+        </div>
+      </div>
+    `;
+  }
+  
   return `
     <div class="component">
       <div class="component-title">${name}</div>
       <div class="component-description">${description}</div>
-      <div class="install-command">${installCmd}</div>
+      <div class="install-command">${installCmd}</div>${readmeHtml}
     </div>
   `;
 }).join('\n');

@@ -55,6 +55,59 @@
       margin-bottom: 0.5em;
       display: inline-block;
     }
+    .component-readme {
+      margin-top: 1em;
+    }
+    .readme-toggle {
+      background: #e8f4fd;
+      border: 1px solid #bee3f8;
+      border-radius: 6px;
+      padding: 0.5em 1em;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 0.9em;
+      color: #2b6cb0;
+      transition: background-color 0.2s;
+    }
+    .readme-toggle:hover {
+      background: #daf0ff;
+    }
+    .readme-content {
+      margin-top: 1em;
+      padding: 1em;
+      background: #f8f9fa;
+      border-radius: 6px;
+      border-left: 4px solid #4299e1;
+    }
+    .readme-content h1, .readme-content h2, .readme-content h3 {
+      margin-top: 0;
+      color: #2d3748;
+    }
+    .readme-content code {
+      background: #e2e8f0;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+      font-family: monospace;
+      font-size: 0.9em;
+    }
+    .readme-content pre {
+      background: #2d3748;
+      color: #e2e8f0;
+      padding: 1em;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    .readme-content pre code {
+      background: transparent;
+      padding: 0;
+    }
+    .readme-content a {
+      color: #4299e1;
+      text-decoration: none;
+    }
+    .readme-content a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -65,5 +118,19 @@
       <!-- COMPONENT_LIST -->
     </div>
   </div>
+  <script>
+    function toggleReadme(componentName) {
+      const readmeElement = document.getElementById('readme-' + componentName);
+      const toggleElement = readmeElement.previousElementSibling;
+      
+      if (readmeElement.style.display === 'none') {
+        readmeElement.style.display = 'block';
+        toggleElement.textContent = '📖 Hide Documentation';
+      } else {
+        readmeElement.style.display = 'none';
+        toggleElement.textContent = '📖 View Documentation';
+      }
+    }
+  </script>
 </body>
-</html> 
+</html>
