@@ -22,28 +22,26 @@ Complete Stripe payment integration with Supabase authentication, subscription m
 
 ## Installation
 
-```bash
-npx shadcn@latest add https://registry.thefocus.ai/r/stripe-integration.json
-```
-
-## Prerequisites
-
-### 1. Create Next.js App
+Inside of a nextjs app (created like)
 
 ```bash
 npx create-next-app@latest --use-pnpm your-app-name
 cd your-app-name
 ```
 
-### 2. Install Dependencies
+run
+
+```bash
+npx shadcn@latest add https://registry.thefocus.ai/r/stripe-integration.json
+```
+
+## Dependencies
 
 The component will automatically install:
 - `@stripe/stripe-js`
 - `stripe`
 - `@supabase/ssr`
 - `@supabase/supabase-js`
-
-### 3. Install Required Registry Dependencies
 
 ```bash
 # Supabase UI blocks
@@ -105,7 +103,13 @@ In your Supabase dashboard:
 ### 1. Run Database Migrations
 
 ```bash
-supabase db push
+supabase db reset --local --no-seed
+```
+
+or
+
+```bash
+mise run  db-seed
 ```
 
 ### 2. Sync Stripe Products
@@ -113,7 +117,8 @@ supabase db push
 ```bash
 dotenvx run -- tsx scripts/sync_stripe_products.ts
 # or
-npx tsx scripts/sync_stripe_products.ts
+mise run sync-products
+#
 ```
 
 ### 3. Start Development Server

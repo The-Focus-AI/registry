@@ -29,13 +29,14 @@ description = 'Clears out dist'
 run = ['npm run build', 'du -sh dist']
 depends = ['pnpm-install','clean']
 
+[tasks.db-seed]
+description = 'Resets the local database'
+run = ['supabase db reset --local --no-seed']
+
+[tasks.sync-products]
+description = 'Syncs products from stripe'
+run = ['dotenvx run -- tsx scripts/sync_stripe_products.ts']
+
 [tasks.llm-dump]
 description = 'Runs repomix'
 run = ['repomix --ignore "output*,**/*.log,tmp/,inputs/**/*md,data_integrity/**/*.json"']
-
-[tasks.notification-deploy]
-description = 'Deploy the Vercel deployment notification webhook to Supabase'
-run = [
-  'cd supabase/functions && supabase functions deploy deployment-notification --no-verify-jwt',
-  'echo "✅ Deployment notification webhook deployed successfully!"'
-]

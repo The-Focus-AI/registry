@@ -101,11 +101,6 @@
       "target": "lib/stripe/webhooks.ts"
     },
     {
-      "path": "components/stripe-integration/list_changed_files.sh",
-      "type": "registry:file",
-      "target": "list_changed_files.sh"
-    },
-    {
       "path": "components/stripe-integration/scripts/sync_stripe_products.ts",
       "type": "registry:file",
       "target": "scripts/sync_stripe_products.ts"
@@ -185,10 +180,6 @@
       {
         "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/stripe/webhooks.ts",
         "relative": "lib/stripe/webhooks.ts"
-      },
-      {
-        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/list_changed_files.sh",
-        "relative": "list_changed_files.sh"
       },
       {
         "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/scripts/sync_stripe_products.ts",
