@@ -1,0 +1,204 @@
+{
+  "name": "stripe-integration",
+  "type": "registry:block",
+  "title": "Stripe Integration",
+  "description": "Complete Stripe payment integration with Supabase authentication, subscription management, and admin dashboard",
+  "dependencies": [
+    "@stripe/stripe-js",
+    "stripe",
+    "@supabase/ssr",
+    "@supabase/supabase-js"
+  ],
+  "registryDependencies": [
+    "https://supabase.com/ui/r/ai-editor-rules.json",
+    "https://supabase.com/ui/r/password-based-auth-nextjs.json",
+    "https://registry.thefocus.ai/r/cli-component.json"
+  ],
+  "files": [
+    {
+      "path": "components/stripe-integration/app/page.tsx",
+      "type": "registry:file",
+      "target": "app/page.tsx"
+    },
+    {
+      "path": "components/stripe-integration/lib/supabase/middleware.ts",
+      "type": "registry:file",
+      "target": "lib/supabase/middleware.ts"
+    },
+    {
+      "path": "components/stripe-integration/app/api/stripe/checkout/route.ts",
+      "type": "registry:file",
+      "target": "app/api/stripe/checkout/route.ts"
+    },
+    {
+      "path": "components/stripe-integration/app/api/stripe/webhooks/route.ts",
+      "type": "registry:file",
+      "target": "app/api/stripe/webhooks/route.ts"
+    },
+    {
+      "path": "components/stripe-integration/app/dashboard/admin/SyncStripeButton.tsx",
+      "type": "registry:file",
+      "target": "app/dashboard/admin/SyncStripeButton.tsx"
+    },
+    {
+      "path": "components/stripe-integration/app/dashboard/admin/page.tsx",
+      "type": "registry:file",
+      "target": "app/dashboard/admin/page.tsx"
+    },
+    {
+      "path": "components/stripe-integration/app/dashboard/page.tsx",
+      "type": "registry:file",
+      "target": "app/dashboard/page.tsx"
+    },
+    {
+      "path": "components/stripe-integration/app/landing/page.tsx",
+      "type": "registry:file",
+      "target": "app/landing/page.tsx"
+    },
+    {
+      "path": "components/stripe-integration/app/pricing/page.tsx",
+      "type": "registry:file",
+      "target": "app/pricing/page.tsx"
+    },
+    {
+      "path": "components/stripe-integration/components/SyncStripeButton.tsx",
+      "type": "registry:file",
+      "target": "components/SyncStripeButton.tsx"
+    },
+    {
+      "path": "components/stripe-integration/components/pricing-table.tsx",
+      "type": "registry:file",
+      "target": "components/pricing-table.tsx"
+    },
+    {
+      "path": "components/stripe-integration/lib/activities/tracker.ts",
+      "type": "registry:file",
+      "target": "lib/activities/tracker.ts"
+    },
+    {
+      "path": "components/stripe-integration/lib/credits/manager.ts",
+      "type": "registry:file",
+      "target": "lib/credits/manager.ts"
+    },
+    {
+      "path": "components/stripe-integration/lib/stripe/client.ts",
+      "type": "registry:file",
+      "target": "lib/stripe/client.ts"
+    },
+    {
+      "path": "components/stripe-integration/lib/stripe/server.ts",
+      "type": "registry:file",
+      "target": "lib/stripe/server.ts"
+    },
+    {
+      "path": "components/stripe-integration/lib/stripe/syncSubscription.ts",
+      "type": "registry:file",
+      "target": "lib/stripe/syncSubscription.ts"
+    },
+    {
+      "path": "components/stripe-integration/lib/stripe/webhooks.ts",
+      "type": "registry:file",
+      "target": "lib/stripe/webhooks.ts"
+    },
+    {
+      "path": "components/stripe-integration/list_changed_files.sh",
+      "type": "registry:file",
+      "target": "list_changed_files.sh"
+    },
+    {
+      "path": "components/stripe-integration/scripts/sync_stripe_products.ts",
+      "type": "registry:file",
+      "target": "scripts/sync_stripe_products.ts"
+    },
+    {
+      "path": "components/stripe-integration/supabase/migrations/20240626120000_consolidated_schema.sql",
+      "type": "registry:file",
+      "target": "supabase/migrations/20240626120000_consolidated_schema.sql"
+    }
+  ],
+  "_metadata": {
+    "originalPaths": [
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/app/page.tsx",
+        "relative": "app/page.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/supabase/middleware.ts",
+        "relative": "lib/supabase/middleware.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/app/api/stripe/checkout/route.ts",
+        "relative": "app/api/stripe/checkout/route.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/app/api/stripe/webhooks/route.ts",
+        "relative": "app/api/stripe/webhooks/route.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/app/dashboard/admin/SyncStripeButton.tsx",
+        "relative": "app/dashboard/admin/SyncStripeButton.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/app/dashboard/admin/page.tsx",
+        "relative": "app/dashboard/admin/page.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/app/dashboard/page.tsx",
+        "relative": "app/dashboard/page.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/app/landing/page.tsx",
+        "relative": "app/landing/page.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/app/pricing/page.tsx",
+        "relative": "app/pricing/page.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/components/SyncStripeButton.tsx",
+        "relative": "components/SyncStripeButton.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/components/pricing-table.tsx",
+        "relative": "components/pricing-table.tsx"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/activities/tracker.ts",
+        "relative": "lib/activities/tracker.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/credits/manager.ts",
+        "relative": "lib/credits/manager.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/stripe/client.ts",
+        "relative": "lib/stripe/client.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/stripe/server.ts",
+        "relative": "lib/stripe/server.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/stripe/syncSubscription.ts",
+        "relative": "lib/stripe/syncSubscription.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/stripe/webhooks.ts",
+        "relative": "lib/stripe/webhooks.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/list_changed_files.sh",
+        "relative": "list_changed_files.sh"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/scripts/sync_stripe_products.ts",
+        "relative": "scripts/sync_stripe_products.ts"
+      },
+      {
+        "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/supabase/migrations/20240626120000_consolidated_schema.sql",
+        "relative": "supabase/migrations/20240626120000_consolidated_schema.sql"
+      }
+    ],
+    "created": "2025-06-26T00:45:38.994Z"
+  }
+}
