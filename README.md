@@ -33,14 +33,14 @@ We provide a comprehensive script for managing components in this registry.
 
 ### Adding Components
 
-Use the `component_add` script to automatically create components from existing files:
+Use the `component_cli` script to automatically create components from existing files:
 
 ```bash
 # Add files to a new component
-./component_add my-component file1.js file2.css src/utils.ts
+./component_cli my-component file1.js file2.css src/utils.ts
 
 # Add files with automatic README generation
-./component_add --with-readme my-component file1.js file2.css
+./component_cli --with-readme my-component file1.js file2.css
 ```
 
 This will:
@@ -53,13 +53,13 @@ This will:
 
 ```bash
 # List all components
-./component_add --list
+./component_cli --list
 
 # Create README for existing component
-./component_add --readme component-name
+./component_cli --readme component-name
 
 # Reset component files to original locations
-./component_add --reset component-name
+./component_cli --reset component-name
 ```
 
 ### Component Documentation
@@ -88,6 +88,26 @@ Generated READMEs include:
 - Installation instructions
 - Sections for description, configuration, and usage examples
 
+### Comparing and Updating Files from a Downstream Repo
+
+You can check if any files in a component have changed in your downstream project, and optionally update the registry with new versions:
+
+```bash
+# Compare all files in the component
+./component_cli --compare <component_name>
+
+# Compare and update all files in the component
+./component_cli --compare --update <component_name>
+
+# Compare one or more specific files
+./component_cli --compare <component_name> path/to/file1.ts path/to/file2.ts
+
+# Compare and update one or more specific files (also adds them to the registry if new)
+./component_cli --compare --update <component_name> path/to/file1.ts path/to/file2.ts
+```
+
+This makes it easy to keep your registry in sync with changes from downstream projects, or to add new files to a component's registry entry.
+
 ## Development
 
 1. Clone the repo
@@ -99,35 +119,47 @@ Generated READMEs include:
    ```sh
    pnpm build
    ```
-4. Add new components using the `component_add` script or manually in the `components/` directory
+4. Add new components using the `component_cli` script or manually in the `components/` directory
 5. Each component should have a `component.json` and optionally a `README.md`
 6. Push to `main` to trigger deployment to GitHub Pages
 
 ## Scripts
 
-### `component_add` - Component Management Script
+### `component_cli` - Component Management Script
 
 A Node.js script for managing components in the registry.
 
 **Full Usage:**
 ```bash
 # Add component with files
-./component_add <component_name> <file1> [file2] [file3] ...
+./component_cli <component_name> <file1> [file2] [file3] ...
 
 # Add component with automatic README
-./component_add --with-readme <component_name> <file1> [file2] ...
+./component_cli --with-readme <component_name> <file1> [file2] ...
 
 # Create README for existing component
-./component_add --readme <component_name>
+./component_cli --readme <component_name>
 
 # Reset component files to original locations
-./component_add --reset <component_name>
+./component_cli --reset <component_name>
 
 # List all components
-./component_add --list
+./component_cli --list
 
 # Show help
-./component_add --help
+./component_cli --help
+
+# Compare registry files to originals in a downstream repo
+./component_cli --compare <component_name>
+
+# Compare and update all files in the component
+./component_cli --compare <component_name> --update
+
+# Compare a single file
+./component_cli --compare <component_name> path/to/file.ts
+
+# Compare and update a single file (also adds it to the registry if new)
+./component_cli --compare <component_name> path/to/file.ts --update
 ```
 
 **Features:**
