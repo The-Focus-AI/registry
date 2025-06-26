@@ -39,13 +39,18 @@
       ],
       "files": [
         {
-          "path": "components/stripe-integration/app/page.tsx",
+          "path": "components/stripe-integration/README.md",
           "type": "registry:file",
+          "target": "docs/STRIPE-README.md"
+        },
+        {
+          "path": "components/stripe-integration/app/page.tsx",
+          "type": "registry:page",
           "target": "app/page.tsx"
         },
         {
           "path": "components/stripe-integration/lib/supabase/middleware.ts",
-          "type": "registry:file",
+          "type": "registry:lib",
           "target": "lib/supabase/middleware.ts"
         },
         {
@@ -60,73 +65,68 @@
         },
         {
           "path": "components/stripe-integration/app/dashboard/admin/SyncStripeButton.tsx",
-          "type": "registry:file",
+          "type": "registry:component",
           "target": "app/dashboard/admin/SyncStripeButton.tsx"
         },
         {
           "path": "components/stripe-integration/app/dashboard/admin/page.tsx",
-          "type": "registry:file",
+          "type": "registry:page",
           "target": "app/dashboard/admin/page.tsx"
         },
         {
           "path": "components/stripe-integration/app/dashboard/page.tsx",
-          "type": "registry:file",
+          "type": "registry:page",
           "target": "app/dashboard/page.tsx"
         },
         {
           "path": "components/stripe-integration/app/landing/page.tsx",
-          "type": "registry:file",
+          "type": "registry:page",
           "target": "app/landing/page.tsx"
         },
         {
           "path": "components/stripe-integration/app/pricing/page.tsx",
-          "type": "registry:file",
+          "type": "registry:page",
           "target": "app/pricing/page.tsx"
         },
         {
           "path": "components/stripe-integration/components/SyncStripeButton.tsx",
-          "type": "registry:file",
+          "type": "registry:component",
           "target": "components/SyncStripeButton.tsx"
         },
         {
           "path": "components/stripe-integration/components/pricing-table.tsx",
-          "type": "registry:file",
+          "type": "registry:component",
           "target": "components/pricing-table.tsx"
         },
         {
           "path": "components/stripe-integration/lib/activities/tracker.ts",
-          "type": "registry:file",
+          "type": "registry:lib",
           "target": "lib/activities/tracker.ts"
         },
         {
           "path": "components/stripe-integration/lib/credits/manager.ts",
-          "type": "registry:file",
+          "type": "registry:lib",
           "target": "lib/credits/manager.ts"
         },
         {
           "path": "components/stripe-integration/lib/stripe/client.ts",
-          "type": "registry:file",
+          "type": "registry:lib",
           "target": "lib/stripe/client.ts"
         },
         {
           "path": "components/stripe-integration/lib/stripe/server.ts",
-          "type": "registry:file",
+          "type": "registry:lib",
           "target": "lib/stripe/server.ts"
         },
         {
           "path": "components/stripe-integration/lib/stripe/syncSubscription.ts",
-          "type": "registry:file",
+          "type": "registry:lib",
           "target": "lib/stripe/syncSubscription.ts"
         },
         {
           "path": "components/stripe-integration/lib/stripe/webhooks.ts",
-          "type": "registry:file",
+          "type": "registry:lib",
           "target": "lib/stripe/webhooks.ts"
-        },
-        {
-          "path": "components/stripe-integration/list_changed_files.sh",
-          "type": "registry:file",
-          "target": "list_changed_files.sh"
         },
         {
           "path": "components/stripe-integration/scripts/sync_stripe_products.ts",
@@ -208,10 +208,6 @@
           {
             "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/lib/stripe/webhooks.ts",
             "relative": "lib/stripe/webhooks.ts"
-          },
-          {
-            "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/list_changed_files.sh",
-            "relative": "list_changed_files.sh"
           },
           {
             "source": "/private/var/folders/2f/_dv5csjs2830rrsf6gxgkr_m0000gn/T/tmp.4uuZMhU0L7/sass-test/scripts/sync_stripe_products.ts",
