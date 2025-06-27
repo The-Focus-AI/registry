@@ -65,6 +65,18 @@ npx shadcn@latest add https://registry.thefocus.ai/r/cli-component.json
 supabase init
 ```
 
+add the following sections for the email templates
+
+```toml
+[auth.email.template.confirmation]
+subject = "Confirm your email"
+content_path = "./supabase/templates/confirmation.html"
+
+[auth.email.template.recovery]
+subject = "Reset your password"
+content_path = "./supabase/templates/recovery.html"
+```
+
 ```bash
 supabase start
 ```
