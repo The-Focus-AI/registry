@@ -148,6 +148,16 @@
           "target": "supabase/migrations/20240626120000_consolidated_schema.sql"
         },
         {
+          "path": "components/stripe-integration/supabase/templates/confirmation.html",
+          "type": "registry:file",
+          "target": "supabase/templates/confirmation.html"
+        },
+        {
+          "path": "components/stripe-integration/supabase/templates/recovery.html",
+          "type": "registry:file",
+          "target": "supabase/templates/recovery.html"
+        },
+        {
           "path": "components/stripe-integration/components/navbar.tsx",
           "type": "registry:component",
           "target": "components/navbar.tsx"

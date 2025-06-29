@@ -4,133 +4,518 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Focus AI Registry</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
   <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #a5b4fc;
+      --secondary: #f1f5f9;
+      --accent: #10b981;
+      --text-primary: #0f172a;
+      --text-secondary: #64748b;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8fafc;
+      --bg-code: #1e293b;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+      --radius: 8px;
+      --radius-lg: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: 'DM Sans', sans-serif;
-      background: #f9f9fb;
-      color: #222;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: var(--text-primary);
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      line-height: 1.6;
     }
+
+    .background-pattern {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
     .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      padding: 32px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      position: relative;
+      z-index: 1;
     }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5em;
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+
+    .header h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 700;
+      margin: 0 0 1rem 0;
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
+
+    .header p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0;
+      font-weight: 300;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .stat {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     .component-list {
-      margin-top: 2em;
+      display: grid;
+      gap: 1.5rem;
     }
+
     .component {
-      border-bottom: 1px solid #eee;
-      padding: 1.5em 0;
+      background: var(--bg-primary);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border-light);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
-    .component:last-child {
-      border-bottom: none;
+
+    .component::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
     }
+
+    .component:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-xl);
+    }
+
+    .component-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
     .component-title {
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 0.2em;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      color: var(--text-primary);
     }
+
     .component-description {
-      color: #555;
-      margin-bottom: 0.7em;
+      color: var(--text-secondary);
+      margin: 0 0 1.5rem 0;
+      font-size: 1rem;
+      line-height: 1.6;
     }
+
+    .install-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .install-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     .install-command {
-      background: #f4f4f7;
-      border-radius: 6px;
-      padding: 0.7em 1em;
-      font-family: monospace;
-      font-size: 1em;
-      color: #2d3748;
-      margin-bottom: 0.5em;
-      display: inline-block;
-    }
-    .component-readme {
-      margin-top: 1em;
-    }
-    .readme-toggle {
-      background: #e8f4fd;
-      border: 1px solid #bee3f8;
-      border-radius: 6px;
-      padding: 0.5em 1em;
-      cursor: pointer;
-      display: inline-block;
-      font-size: 0.9em;
-      color: #2b6cb0;
-      transition: background-color 0.2s;
-    }
-    .readme-toggle:hover {
-      background: #daf0ff;
-    }
-    .readme-content {
-      margin-top: 1em;
-      padding: 1em;
-      background: #f8f9fa;
-      border-radius: 6px;
-      border-left: 4px solid #4299e1;
-    }
-    .readme-content h1, .readme-content h2, .readme-content h3 {
-      margin-top: 0;
-      color: #2d3748;
-    }
-    .readme-content code {
-      background: #e2e8f0;
-      padding: 0.2em 0.4em;
-      border-radius: 3px;
-      font-family: monospace;
-      font-size: 0.9em;
-    }
-    .readme-content pre {
-      background: #2d3748;
+      background: var(--bg-code);
       color: #e2e8f0;
-      padding: 1em;
-      border-radius: 6px;
-      overflow-x: auto;
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      position: relative;
+      border: 1px solid #374151;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      word-break: break-all;
     }
+
+    .install-command:hover {
+      background: #2d3748;
+      border-color: var(--primary);
+    }
+
+    .install-command::after {
+      content: 'Click to copy';
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .install-command:hover::after {
+      opacity: 1;
+    }
+
+    .component-readme {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .readme-toggle {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      padding: 0.75rem 1.25rem;
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: none;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .readme-toggle:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .readme-toggle:active {
+      transform: translateY(0);
+    }
+
+    .readme-toggle-icon {
+      transition: transform 0.2s ease;
+    }
+
+    .readme-toggle.open .readme-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .readme-content {
+      margin-top: 1.5rem;
+      padding: 0;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      animation: slideDown 0.3s ease-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .readme-content-inner {
+      background: var(--bg-secondary);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+
+    .readme-content h1, 
+    .readme-content h2, 
+    .readme-content h3 {
+      color: var(--text-primary);
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .readme-content h1 {
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .readme-content h2 {
+      font-size: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .readme-content h3 {
+      font-size: 1.125rem;
+      margin-top: 1.5rem;
+    }
+
+    .readme-content p {
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .readme-content code {
+      background: var(--border-light);
+      color: var(--primary-dark);
+      padding: 0.25rem 0.375rem;
+      border-radius: 4px;
+      font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .readme-content pre {
+      background: var(--bg-code);
+      color: #e2e8f0;
+      padding: 1.25rem;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      margin: 1rem 0;
+      border: 1px solid #374151;
+    }
+
     .readme-content pre code {
       background: transparent;
+      color: inherit;
       padding: 0;
+      border-radius: 0;
+      font-weight: 400;
     }
+
     .readme-content a {
-      color: #4299e1;
+      color: var(--primary);
       text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
     }
+
     .readme-content a:hover {
+      color: var(--primary-dark);
       text-decoration: underline;
+    }
+
+    .readme-content ul, 
+    .readme-content ol {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .readme-content li {
+      margin-bottom: 0.5rem;
+      color: var(--text-secondary);
+    }
+
+    .readme-content strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .copy-feedback {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: var(--accent);
+      color: white;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      transform: translateX(100%);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .copy-feedback.show {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+
+      .component {
+        padding: 1.5rem;
+      }
+
+      .stats {
+        gap: 1rem;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+      }
+
+      .header h1 {
+        font-size: 2.5rem;
+      }
+
+      .header p {
+        font-size: 1.125rem;
+      }
+
+      .install-command::after {
+        display: none;
+      }
+    }
+
+    /* Loading animation */
+    .loading {
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
   </style>
 </head>
-<body>
+<body class="loading">
+  <div class="background-pattern"></div>
+  
   <div class="container">
-    <h1>The Focus AI Registry</h1>
-    <p>Browse and install components for your project. Click the command to copy it!</p>
+    <div class="header">
+      <h1>The Focus AI Registry</h1>
+      <p>Discover and install beautiful UI components for your projects</p>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-number"><!-- COMPONENT_COUNT --></span>
+          <span class="stat-label">Components</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">∞</span>
+          <span class="stat-label">Possibilities</span>
+        </div>
+      </div>
+    </div>
+
     <div class="component-list">
       <!-- COMPONENT_LIST -->
     </div>
   </div>
+
+  <div class="copy-feedback" id="copy-feedback">
+    Copied to clipboard! 📋
+  </div>
+
   <script>
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add loading animation
+      setTimeout(() => {
+        document.body.classList.add('loaded');
+      }, 100);
+    });
+
     function toggleReadme(componentName) {
       const readmeElement = document.getElementById('readme-' + componentName);
       const toggleElement = readmeElement.previousElementSibling;
+      const toggleText = toggleElement.querySelector('.readme-toggle-text');
+      const toggleIcon = toggleElement.querySelector('.readme-toggle-icon');
       
       if (readmeElement.style.display === 'none') {
         readmeElement.style.display = 'block';
-        toggleElement.textContent = '📖 Hide Documentation';
+        toggleText.textContent = 'Hide Documentation';
+        toggleElement.classList.add('open');
       } else {
         readmeElement.style.display = 'none';
-        toggleElement.textContent = '📖 View Documentation';
+        toggleText.textContent = 'View Documentation';
+        toggleElement.classList.remove('open');
       }
     }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(function() {
+        showCopyFeedback();
+      }).catch(function(err) {
+        console.error('Could not copy text: ', err);
+      });
+    }
+
+    function showCopyFeedback() {
+      const feedback = document.getElementById('copy-feedback');
+      feedback.classList.add('show');
+      
+      setTimeout(() => {
+        feedback.classList.remove('show');
+      }, 2000);
+    }
+
+    // Add click-to-copy functionality to all install commands
+    document.addEventListener('DOMContentLoaded', function() {
+      const installCommands = document.querySelectorAll('.install-command');
+      installCommands.forEach(command => {
+        if (!command.hasAttribute('onclick')) {
+          command.style.cursor = 'pointer';
+          command.addEventListener('click', function() {
+            copyToClipboard(this.textContent.trim());
+          });
+        }
+      });
+    });
   </script>
 </body>
 </html>
