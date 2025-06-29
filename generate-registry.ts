@@ -110,6 +110,7 @@ const componentHtml = items.map((item: any) => {
   const description = escapeHtml(item.description || '');
   const installUrl = `https://registry.thefocus.ai/r/${encodeURIComponent(item.name)}.json`;
   const installCmd = `npx shadcn@latest add ${installUrl}`;
+  const escapedInstallCmd = escapeHtml(installCmd);
   
   // Check for README.md in the component directory
   const readmeContent = getComponentReadme(item);
@@ -119,11 +120,14 @@ const componentHtml = items.map((item: any) => {
     const processedMarkdown = markdownToHtml(escapeHtml(readmeContent));
     readmeHtml = `
       <div class="component-readme">
-        <div class="readme-toggle" onclick="toggleReadme('${item.name}')">
-          📖 View Documentation
-        </div>
+        <button class="readme-toggle" onclick="toggleReadme('${item.name}')">
+          <span class="readme-toggle-icon">📖</span>
+          <span class="readme-toggle-text">View Documentation</span>
+        </button>
         <div class="readme-content" id="readme-${item.name}" style="display: none;">
-          <div>${processedMarkdown}</div>
+          <div class="readme-content-inner">
+            <div>${processedMarkdown}</div>
+          </div>
         </div>
       </div>
     `;
@@ -131,14 +135,27 @@ const componentHtml = items.map((item: any) => {
   
   return `
     <div class="component">
-      <div class="component-title">${name}</div>
-      <div class="component-description">${description}</div>
-      <div class="install-command">${installCmd}</div>${readmeHtml}
+      <div class="component-header">
+        <div>
+          <div class="component-title">${name}</div>
+          <div class="component-description">${description}</div>
+        </div>
+      </div>
+      
+      <div class="install-section">
+        <div class="install-label">Installation Command</div>
+        <div class="install-command" onclick="copyToClipboard('${escapedInstallCmd}')">
+          ${installCmd}
+        </div>
+      </div>
+      ${readmeHtml}
     </div>
   `;
 }).join('\n');
 
-const indexHtml = indexTemplate.replace('<!-- COMPONENT_LIST -->', componentHtml);
+let indexHtml = indexTemplate.replace('<!-- COMPONENT_LIST -->', componentHtml);
+// Update the component count in stats
+indexHtml = indexHtml.replace('<!-- COMPONENT_COUNT -->', items.length.toString());
 fs.writeFileSync(outputIndexPath, indexHtml);
 
 console.log(`Wrote ${items.length} components to registry.json and index.html`); 
