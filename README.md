@@ -1,6 +1,6 @@
-# The Focus AI Registry
+# Focus.AI Registry
 
-A public registry and website for [shadcn/ui](https://ui.shadcn.com/) components, designed to make it easy to discover, share, and install reusable UI blocks for your projects.
+A public registry and website for [shadcn/ui](https://ui.shadcn.com/) components, designed to make it easy to discover, share, and install production-ready UI blocks for your projects.
 
 ## What is this?
 
